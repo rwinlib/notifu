@@ -1,8 +1,10 @@
-rem @echo off                            
+@echo off                            
 
 setlocal
 
 SET PROJECT_NAME=notifu
+
+del *.zip
 
 echo Getting repository URL
 SET TEMP_NAME=%RANDOM%-%RANDOM%.tmp
