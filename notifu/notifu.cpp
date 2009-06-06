@@ -8,6 +8,7 @@
 #include "RegistryFix.h"
 #include "Serialize.h"
 #include "QueryContinueOneInstance.h"
+#include "Trace.h"
 
 CAppModule _Module;
 
@@ -49,6 +50,8 @@ enum
 int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow)
 {
 	int errorlevel = eUnknown;
+
+	TRACE(eINFO, _T("Notifu process %d starting.\n"), GetProcessId(GetCurrentProcess()));
 			    
 	gCommandLine.Setup();
 
