@@ -86,7 +86,7 @@ void Trace(int level, const wchar_t* file, int line, const wchar_t *format, ...)
 
       if (file && line)
       {
-         swprintf_s(buffer, sizeof buffer / sizeof *buffer, L"[%s:%ld] (%d)", file, line, level);
+         swprintf_s(buffer, sizeof buffer / sizeof *buffer, L"[%s:%ld] (%d) ", file, line, level);
          output_proc(buffer);
       }
 

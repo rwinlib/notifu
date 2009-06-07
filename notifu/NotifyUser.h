@@ -18,6 +18,6 @@ struct NOTIFU_PARAM
 
 
 
-HRESULT NotifyUser(const NOTIFU_PARAM& params, IQueryContinue *querycontinue = 0);
+HRESULT NotifyUser(const NOTIFU_PARAM& params, IQueryContinue *querycontinue = 0, IUserNotificationCallback *notifcallback = 0);
 
 #endif

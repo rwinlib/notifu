@@ -20,5 +20,6 @@ public:
 	STDMETHOD(OnContextMenu)(POINT *);
 	STDMETHOD(OnLeftClick)(POINT *);
 
+	DWORD GetResultCode();
 };
 #endif

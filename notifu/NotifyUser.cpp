@@ -11,9 +11,9 @@
 //		case S_OK :	errorlevel = eClickedBallon; break;
 //		case S_FALSE :	errorlevel = eTimedOut; break;
 
-HRESULT NotifyUser(const NOTIFU_PARAM& params, IQueryContinue *querycontinue)
+HRESULT NotifyUser(const NOTIFU_PARAM& params, IQueryContinue *querycontinue, IUserNotificationCallback *notifcallback)
 {
-    HRESULT result;
+    HRESULT result = E_FAIL;
 
     IUserNotification *un = 0;
     IUserNotification2 *deux = 0; //French pun : un above stands for UserNotification. deux means 2.
@@ -56,7 +56,7 @@ HRESULT NotifyUser(const NOTIFU_PARAM& params, IQueryContinue *querycontinue)
         result = un->SetBalloonRetry(0, 250, 0);
 
         if (deux)
-            result = deux->Show(querycontinue, 250, 0);
+            result = deux->Show(querycontinue, 250, notifcallback);
         else
             result = un->Show(querycontinue, 250);
 

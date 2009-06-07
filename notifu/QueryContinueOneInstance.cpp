@@ -16,7 +16,7 @@ STDMETHODIMP CQueryContinueOneInstance::QueryContinue(VOID)
 {
 	HRESULT result = CQueryContinue::QueryContinue();
 
-	if((result != S_FALSE) && ThreadWaiting())
+	if((result == S_OK) && ThreadWaiting())
 	{
 		TRACE(eINFO, _T("Notifu process %d exiting because another instance is being launched\n"), GetProcessId(GetCurrentProcess()));
 		result = S_FALSE;

@@ -7,23 +7,12 @@
 #include "NotifyUser.h"
 #include "RegistryFix.h"
 #include "Serialize.h"
+#include "returnvalue.h"
 #include "QueryContinueOneInstance.h"
+#include "UserNotificationCallback.h"
 #include "Trace.h"
 
 CAppModule _Module;
-
-enum
-{
-	//I know the compiler numbers enums, but I like source that
-	//is its own documentation...
-	eSuccess = 0, /// The command line was understood and executed properly
-	eBadArgs = 1, /// Some parameters were bad or missing.
-	eTimedOut = 2, /// Implies eSuccess, but a timeout was requested and the ballon was dismissed because of that
-	eClickedBallon = 3, /// Implies eSuccess, but the user closed the ballon to close it, ending the program
-	eClosedBallon = 4, /// Implies eSuccess, but the user closed the upper right corner of the ballon to close it, ending the program
-	eNotSupported = 5, /// IUserNotification is not supported on this system
-	eUnknown = 255
-};
 
 /* -------------------------------------------------------------------------- */
 /** @brief The entry point of the program (it is command line).
@@ -85,10 +74,11 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 		gCommandLine.CopyCommandLineToParams(params);
 
 		CQueryContinueOneInstance mqc(params.mDelay);
+      CUserNotificationCallback unc;
 
 		SerializeEnter();
 
-		result = NotifyUser(params, &mqc);
+		result = NotifyUser(params, &mqc, &unc);
 
 		SerializeLeave();
 
@@ -105,7 +95,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 			}
 			else
 			{
-				errorlevel = eClosedBallon;
+				errorlevel = unc.GetResultCode();
 			}
 			break;
 		case E_NOINTERFACE:
