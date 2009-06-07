@@ -46,7 +46,7 @@ STDMETHODIMP CQueryContinue::QueryContinue(VOID)
 
 void CQueryContinue::SetTimeout(DWORD d)
 {
-	TRACE(eINFO, _T("Timeout value set at %d milliseconds\n"), d);
+	TRACE(eINFO, L"Timeout value set at %d milliseconds\n", d);
 	 mDelay = d;
 	 mStarted = GetTickCount();
 }
@@ -59,7 +59,7 @@ bool CQueryContinue::TimeoutReached() const
    {
       DWORD el = GetTickCount()-mStarted;
 		result = el > mDelay;
-      TRACE(eINFO, _T("%d milliseconds elapsed (%d)\n"), el, result);
+      TRACE(eINFO, L"%d milliseconds elapsed (%d)\n", el, result);
    }
 
 	return result;

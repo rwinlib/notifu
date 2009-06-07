@@ -32,21 +32,21 @@ STDMETHODIMP CUserNotificationCallback::OnBalloonUserClick(POINT *)
 {
 	TRACE(eINFO, L"User clicked the balloon (callback)\n");
    result = eClickedBallon;
-	return S_OK;
+	return S_FALSE;
 }
 
 STDMETHODIMP CUserNotificationCallback::OnContextMenu(POINT *)
 {
 	TRACE(eINFO, L"User tried to bring a context menu (callback)\n");
    result = eContextMenu;
-	return S_OK;
+	return S_FALSE;
 }
 
 STDMETHODIMP CUserNotificationCallback::OnLeftClick(POINT *)
 {
 	TRACE(eINFO, L"User clicked the system notification area (callback)\n");
    result = eSystemNotificationArea;
-	return S_OK;
+	return S_FALSE;
 }
 
 DWORD CUserNotificationCallback::GetResultCode() 

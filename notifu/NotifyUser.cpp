@@ -19,24 +19,24 @@ HRESULT NotifyUser(const NOTIFU_PARAM& params, IQueryContinue *querycontinue, IU
     IUserNotification2 *deux = 0; //French pun : un above stands for UserNotification. deux means 2.
 
     //First try with the Vista/Windows 7 interface
-    result = CoCreateInstance(CLSID_UserNotification, 0, CLSCTX_ALL, IID_IUserNotification2, (void**)&deux);
+    //result = CoCreateInstance(CLSID_UserNotification, 0, CLSCTX_ALL, IID_IUserNotification2, (void**)&deux);
 
     //Fall back to Windows XP
     if (!SUCCEEDED(result))
     {
-			TRACE(eWARN, _T("Using Windows XP interface IUserNotification\n"));
+			TRACE(eWARN, L"Using Windows XP interface IUserNotification\n");
         result = CoCreateInstance(CLSID_UserNotification, 0, CLSCTX_ALL, IID_IUserNotification, (void**)&un);
     }
     else
     {
-			TRACE(eINFO, _T("Using Vista interface IUserNotification2\n"));
+			TRACE(eINFO, L"Using Vista interface IUserNotification2\n");
         un = (IUserNotification*)deux; //Rather ugly cast saves some code...
     }
 
     if (SUCCEEDED(result))
     {
-        const std::basic_string<TCHAR> crlf_text(_T("\\n"));
-        const std::basic_string<TCHAR> crlf(_T("\n"));
+        const std::basic_string<TCHAR> crlf_text(L"\\n");
+        const std::basic_string<TCHAR> crlf(L"\n");
         std::basic_string<TCHAR> text(params.mText);
         size_t look = 0;
         size_t found;
