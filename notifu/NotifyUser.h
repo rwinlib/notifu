@@ -11,6 +11,7 @@ struct NOTIFU_PARAM
 {
 	int mDelay;
 	DWORD mType;
+	bool mForceXP;
 	std::basic_string<TCHAR> mTitle;
 	std::basic_string<TCHAR> mText;
 	HICON mIcon;

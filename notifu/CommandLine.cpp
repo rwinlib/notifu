@@ -19,6 +19,7 @@ CCommandLine::CCommandLine()
 , Title(L"p", L"The title (or prompt) of the ballon")
 , Text(L"m", L"The message text")
 , Fix(L"e", L"Enable ballon tips in the registry (for this user only)")
+, ForceXP(L"xp", L"Force WindowsXP ballon tips behavior")
 , IconFileName(L"i", L"Specify an icon to use ('parent' uses the icon of the parent process)")
 {
 }
@@ -41,6 +42,7 @@ void CCommandLine::Setup()
 	AddFlag(Text);
 	AddFlag(IconFileName);
 	AddFlag(Fix);
+	AddFlag(ForceXP);
 }
 
 HRESULT CCommandLine::CopyCommandLineToParams(NOTIFU_PARAM& params)
@@ -57,6 +59,8 @@ HRESULT CCommandLine::CopyCommandLineToParams(NOTIFU_PARAM& params)
 	else
 		params.mType = NIIF_INFO;
 
+   params.mForceXP = ForceXP;
+
 	params.mIcon = GoFindAnIcon(IconFileName.Value().c_str());
 
 	if(params.mIcon == 0)
@@ -71,7 +75,6 @@ HRESULT CCommandLine::CopyCommandLineToParams(NOTIFU_PARAM& params)
 	{
 		params.mTitle += *i;
 	}
-
 
 	for(i=Text.Values().begin(); i!=Text.Values().end(); ++i)
 	{

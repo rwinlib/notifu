@@ -28,6 +28,7 @@ bool ReadFromString(const tstring& s, tstring* pValue)
 	Argument::Argument(const tstring& sName, const tstring& sDescription)
     :   m_bFound(false),
         m_bCaseSensitive(false),
+        m_bDocumented(true),
         m_sDescription(sDescription)
     {
         _ASSERTE(!sName.empty());
@@ -63,6 +64,11 @@ bool ReadFromString(const tstring& s, tstring* pValue)
     void Argument::SetFound(bool bFound)
     {
         m_bFound = bFound;
+    }
+
+    void Argument::SetDocumented(bool bDocumented)
+    {
+        m_bDocumented = bDocumented;
     }
 
     bool Argument::Matches(const tstring& sName) const
@@ -591,11 +597,6 @@ bool ReadFromString(const tstring& s, PairValue* pValue)
 
         for(std::vector<tstring>::const_iterator psArg = rgsArgs.begin(); psArg != rgsArgs.end(); ++psArg)
         {
-#ifdef _DEBUG
-            OutputDebugString(__T("Processing arg: "));
-            OutputDebugString(psArg->c_str());
-            OutputDebugString(__T("\n"));
-#endif
             Argument*   pArg = 0;
             bool        bIsFlag = false;
 

@@ -13,7 +13,7 @@
 #include "Trace.h"
 
 CAppModule _Module;
-
+ 
 /* -------------------------------------------------------------------------- */
 /** @brief The entry point of the program (it is command line).
 *
@@ -40,7 +40,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 {
    int errorlevel = eUnknown;
 
-   TRACE(eINFO, L"Notifu process %d starting.\n", GetProcessId(GetCurrentProcess()));
+   TRACE(eINFO, L"Notifu process %d starting (http://www.paralint.com/projects/notifu/)\n", GetProcessId(GetCurrentProcess()));
+   TRACE(eINFO, L"%s build\n", __TIMESTAMP__);
 
    gCommandLine.Setup();
 
@@ -94,9 +95,13 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
                {
                   errorlevel = eTimedOut;
                }
+               else if(mqc.WasReplaced())
+               {
+                  errorlevel = eReplaced;
+}
                else
                {
-                  errorlevel = eClosedBallon;
+						TRACE(eWARN, L"Unknown reason for exiting (0x%08X)\n", result);
                }
                break;
             case E_NOINTERFACE:

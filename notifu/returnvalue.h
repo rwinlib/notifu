@@ -13,6 +13,7 @@ enum
 	eNotSupported = 5, /// IUserNotification is not supported on this system
 	eContextMenu = 6, /// IUserNotification is not supported on this system
 	eSystemNotificationArea = 7, /// IUserNotification is not supported on this system
+	eReplaced = 8, /// A new instance of Notifu dismissed a running instace
 	eUnknown = 255
 };
 

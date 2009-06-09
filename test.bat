@@ -45,7 +45,7 @@ echo Return value is %ERRORLEVEL%
 rem ----------------------------------------------------------------------------
 rem Embeeded quotes are properly escaped
 rem ----------------------------------------------------------------------------
-%BUILD_CONFIGURATION%\notifu /m "\"Theo Est\" <test@sender.example.>" 
+%BUILD_CONFIGURATION%\notifu /m "\"Theo Est\" <test@sender.example.com> has embeeded quotes." 
 echo Return value is %ERRORLEVEL%
 
 rem ----------------------------------------------------------------------------
@@ -56,7 +56,7 @@ echo Return value is %ERRORLEVEL%
 
 
 rem ----------------------------------------------------------------------------
-rem Introducing carriage return and line feed for each /n encountered
+rem Introducing carriage return and line feed for each /n encountered
 rem ----------------------------------------------------------------------------
 %BUILD_CONFIGURATION%\notifu /p "Version " /p 1.4 /m "This is " /m a /m " test of\n" /m returns /m "\n" /m "and other line feeds"
 echo Return value is %ERRORLEVEL%
