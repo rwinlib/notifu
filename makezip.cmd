@@ -40,7 +40,7 @@ rd /s /q %PROJECT_NAME%_build
 echo.
 dir *.zip | findstr zip
 echo.
-unzip -l %PROJECT_NAME%.zip *.dll
+unzip -l %PROJECT_NAME%.zip *.exe *.pdb
 if NOT ERRORLEVEL 0 (
 echo.
 echo Binary not found in distribution. Fix it or die.
